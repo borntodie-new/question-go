@@ -2,7 +2,7 @@ CREATE TABLE "users" (
                          "id" bigserial PRIMARY KEY,
                          "username" varchar UNIQUE NOT NULL,
                          "hashed_password" varchar NOT NULL,
-                         "nickname" varchar,
+                         "nickname" varchar NOT NULL,
                          "avatar" varchar DEFAULT './static/images/avatar/default.jpg',
                          "status" bool DEFAULT true,
                          "is_super" bool DEFAULT false,
@@ -12,13 +12,13 @@ CREATE TABLE "users" (
 
 CREATE TABLE "profiles" (
                             "id" bigserial PRIMARY KEY,
-                            "user_id" bigint,
-                            "real_name" varchar,
+                            "real_name" varchar NOT NULL,
                             "gender" int DEFAULT 0,
                             "quote" varchar,
                             "address" varchar,
                             "created_at" timestamptz NOT NULL DEFAULT (now()),
-                            "updated_at" timestamptz NOT NULL DEFAULT (now())
+                            "updated_at" timestamptz NOT NULL DEFAULT (now()),
+                            "user_id" bigint UNIQUE NOT NULL
 );
 
 CREATE INDEX ON "users" ("username");
