@@ -31,3 +31,5 @@ migration_down:
 	@echo "migrate database for delete..."
 	migrate -path ./migrations -database "postgres://root:password@localhost:5432/question?sslmode=disable" -verbose down
 	@echo "migrate database success..."
+sqlc:
+	sqlc generate
